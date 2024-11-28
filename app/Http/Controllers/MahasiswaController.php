@@ -56,9 +56,11 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Mahasiswa $mahasiswa)
+    public function show($id)
     {
-        //
+        $mahasiswa = Mahasiswa::with(['jurusan','prodi'])->find($id);
+        // $mahasiswas = Mahasiswa::with(['jurusan','prodi'])->get();
+        return view("admin.mahasiswa.detail")->with('mahasiswa', $mahasiswa);
     }
 
     /**

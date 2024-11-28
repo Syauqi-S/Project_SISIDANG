@@ -28,26 +28,32 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($prodis as $prodi)
+                @if ($prodis->isEmpty())
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $prodi->nama_prodi }}</td>
-                        <td>{{ $prodi->jurusan->Jurusan }}</td>
-                        <td>{{ $prodi->jenjang->nama_jenjang }}</td>
-                        <td>
-                            <a href="{{ route('prodi.edit', $prodi->id) }}" class="btn btn-sm btn-primary" class="me-5"><i
-                                    class="fas fa-edit">
-                                    Edit</i></a>
-                            <form action="{{ route('prodi.destroy', $prodi->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger ms-3">
-                                    <i class="fas fa-trash"> Delete</i>
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="5" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
-                @endforeach
+                @else
+                    @foreach ($prodis as $prodi)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $prodi->nama_prodi }}</td>
+                            <td>{{ $prodi->jurusan->Jurusan }}</td>
+                            <td>{{ $prodi->jenjang->nama_jenjang }}</td>
+                            <td>
+                                <a href="{{ route('prodi.edit', $prodi->id) }}" class="btn btn-sm btn-primary"
+                                    class="me-5"><i class="fas fa-edit">
+                                        Edit</i></a>
+                                <form action="{{ route('prodi.destroy', $prodi->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger ms-3">
+                                        <i class="fas fa-trash"> Delete</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>

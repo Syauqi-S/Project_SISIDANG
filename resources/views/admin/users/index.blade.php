@@ -32,26 +32,32 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @if ($users->isEmpty())
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->roles->role }}</td>
-                        <td>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary" class="me-5"><i
-                                    class="fas fa-edit">
-                                    Edit</i></a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger ms-3">
-                                    <i class="fas fa-trash"> Delete</i>
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="5" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
-                @endforeach
+                @else
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->roles->role }}</td>
+                            <td>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary"
+                                    class="me-5"><i class="fas fa-edit">
+                                        Edit</i></a>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger ms-3">
+                                        <i class="fas fa-trash"> Delete</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>

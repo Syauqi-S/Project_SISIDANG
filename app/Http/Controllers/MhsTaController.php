@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Judul_TA;
-use App\Http\Requests\StoreJudul_TARequest;
-use App\Http\Requests\UpdateJudul_TARequest;
+use App\Models\Mhs_ta;
+use App\Http\Requests\StoreMhs_taRequest;
+use App\Http\Requests\UpdateMhs_taRequest;
 
-class JudulTAController extends Controller
+class MhsTaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class JudulTAController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJudul_TARequest $request)
+    public function store(StoreMhs_taRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class JudulTAController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Judul_TA $judul_TA)
+    public function show(Mhs_ta $mhs_ta)
     {
         //
     }
@@ -43,7 +43,7 @@ class JudulTAController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Judul_TA $judul_TA)
+    public function edit(Mhs_ta $mhs_ta)
     {
         //
     }
@@ -51,7 +51,7 @@ class JudulTAController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJudul_TARequest $request, Judul_TA $judul_TA)
+    public function update(UpdateMhs_taRequest $request, Mhs_ta $mhs_ta)
     {
         //
     }
@@ -59,7 +59,7 @@ class JudulTAController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Judul_TA $judul_TA)
+    public function destroy(Mhs_ta $mhs_ta)
     {
         //
     }

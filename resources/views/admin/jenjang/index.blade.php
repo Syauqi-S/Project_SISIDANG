@@ -25,24 +25,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jenjang as $item)
+                @if ($jenjang->isEmpty())
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $item->nama_jenjang }}</td>
-                        <td>
-                            <a href="{{ route('jenjang.edit', $item->id) }}" class="btn btn-sm btn-primary"
-                                class="me-5"><i class="fas fa-edit">
-                                    Edit</i></a>
-                            <form action="{{ route('jenjang.destroy', $item->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger ms-3">
-                                    <i class="fas fa-trash"> Delete</i>
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="3" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
-                @endforeach
+                @else
+                    @foreach ($jenjang as $item)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $item->nama_jenjang }}</td>
+                            <td>
+                                <a href="{{ route('jenjang.edit', $item->id) }}" class="btn btn-sm btn-primary"
+                                    class="me-5"><i class="fas fa-edit">
+                                        Edit</i></a>
+                                <form action="{{ route('jenjang.destroy', $item->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger ms-3">
+                                        <i class="fas fa-trash"> Delete</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>
