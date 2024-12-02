@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JenjangController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -38,3 +39,5 @@ Route::resource("mahasiswa", MahasiswaController::class);
 Route::get('get-prodi-jurusan/{jurusan_id}', [ProdiController::class, 'getProdiJurusan']);
 
 Route::resource("dosen", DosenController::class);
+
+Route::resource("kategori", KategoriController::class);

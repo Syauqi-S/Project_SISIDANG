@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('nip',25)->unique();
             $table->string('nama',50);
             $table->unsignedBigInteger('id_jurusan');
-            $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade');
             $table->unsignedBigInteger('id_prodi');
-            $table->foreign('id_prodi')->references('id')->on('prodi')->onDelete('cascade');
+            $table->unsignedBigInteger('id_kategori');
             $table->timestamps();
+
+            $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id')->on('prodi')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
         });
     }
 

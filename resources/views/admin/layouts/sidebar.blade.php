@@ -76,6 +76,12 @@
                               <p>Dosen</p>
                           </a>
                       </li>
+                      <li class="nav-item">
+                          <a href="/kategori">
+                              <i class="fas fa-users"></i>
+                              <p>Kategori</p>
+                          </a>
+                      </li>
                       <li class="nav-item ">
                           <a data-bs-toggle="collapse" href="#chartsTA">
                               <i class="far fa-id-card"></i>

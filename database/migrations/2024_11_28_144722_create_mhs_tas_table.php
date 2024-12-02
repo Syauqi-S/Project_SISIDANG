@@ -11,9 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mhs_tas', function (Blueprint $table) {
+        Schema::create('mhs_ta', function (Blueprint $table) {
             $table->id();
+            $table->string("judul");
+            $table->unsignedBigInteger("id_mhs");
+            $table->unsignedBigInteger("pembimbing1");
+            $table->unsignedBigInteger("pembimbing2");
+            $table->unsignedBigInteger("id_kategori");
+            $table->enum('status',['0','1','2','3'])->default('0')->comment('0(mhs)=dalam pengajuan, 0(dosen/dll)=belum diperiksa');
+
             $table->timestamps();
+
+            $table->foreign("id_mhs")->references("id")->on("mahasiswa")->onDelete("cascade");
+            $table->foreign("id_kategori")->references("id")->on("kategoris")->onDelete("cascade");
         });
     }
 
@@ -22,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mhs_tas');
+        Schema::dropIfExists('mhs_ta');
     }
 };
