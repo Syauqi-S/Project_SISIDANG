@@ -12,13 +12,10 @@ class Prodi extends Model
     protected $fillable = [
         'nama_prodi',
         'id_jurusan',
-        'id_jenjang'
+        'jenjang'
     ];
     protected $table = "prodi";
     public function jurusan(){
         return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
-    }
-    public function jenjang(){
-        return $this->belongsTo(Jenjang::class, 'id_jenjang', 'id');
     }
 } 

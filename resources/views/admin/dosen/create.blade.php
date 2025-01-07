@@ -40,11 +40,22 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label>Prodi</label>
-                <select name="prodi" id="prodi" class="form-control">
-                    <option value="">Pilih Prodi</option>
+                <label for="kategori">Kategori(Keahlian)</label>
+                <select name="kategori[]" id="kategori" class="form-control select2" multiple>
+                    @php
+                        $selectedKategori = old('kategori', []);
+                        if (!is_array($selectedKategori)) {
+                            $selectedKategori = [];
+                        }
+                    @endphp
+                    @foreach ($kategoris as $item)
+                        <option value="{{ $item->id }}"
+                            {{ in_array($item->id, $selectedKategori) ? 'selected' : '' }}>
+                            {{ $item->kategori }}
+                        </option>
+                    @endforeach
                 </select>
-                @error('prodi')
+                @error('kategori')
                     <span class="text-danger">{{ $message }}<br></span>
                 @enderror
             </div>
@@ -52,7 +63,16 @@
             <button class="btn btn-primary mt-4">Tambah</button>
         </form>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
-    <script src="/jurusanProdi.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#kategori').select2({
+                placeholder: 'Pilih kategori keahlian',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
 @endsection

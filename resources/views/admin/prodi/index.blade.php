@@ -38,7 +38,7 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $prodi->nama_prodi }}</td>
                             <td>{{ $prodi->jurusan->Jurusan }}</td>
-                            <td>{{ $prodi->jenjang->nama_jenjang }}</td>
+                            <td>{{ $prodi->jenjang }}</td>
                             <td>
                                 <a href="{{ route('prodi.edit', $prodi->id) }}" class="btn btn-sm btn-primary"
                                     class="me-5"><i class="fas fa-edit">

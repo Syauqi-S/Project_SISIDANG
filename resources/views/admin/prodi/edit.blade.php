@@ -20,11 +20,11 @@
                     <option value="">Pilih Jurusan</option>
                     @foreach ($jurusans as $jurusan)
                         <option value="{{ $jurusan->id }}"
-                            {{ old('jurusan', $jurusan->id_jurusan) == $jurusan->id ? 'selected' : '' }}>
+                            {{ old('jurusan', $prodi->id_jurusan) == $jurusan->id ? 'selected' : '' }}>
                             {{ $jurusan->Jurusan }}</option>
                     @endforeach
                 </select>
-                @error('jenjang')
+                @error('jurusan')
                     <span class="text-danger">{{ $message }}<br></span>
                 @enderror
             </div>
@@ -32,11 +32,12 @@
                 <label>Jenjang</label>
                 <select name="jenjang" id="jenjang" class="form-control">
                     <option value="">Pilih Jenjang</option>
-                    @foreach ($jenjangs as $jenjang)
-                        <option value="{{ $jenjang->id }}"
-                            {{ old('jenjang', $jenjang->id_jenjang) == $jenjang->id ? 'selected' : '' }}>
-                            {{ $jenjang->nama_jenjang }}</option>
-                    @endforeach
+                    <option value="D2" {{ old('jenjang', $prodi->jenjang) === 'D2' ? 'selected' : '' }}>
+                        D2</option>
+                    <option value="D3" {{ old('jenjang', $prodi->jenjang) === 'D3' ? 'selected' : '' }}>
+                        D3</option>
+                    <option value="D4" {{ old('jenjang', $prodi->jenjang) === 'D4' ? 'selected' : '' }}>
+                        D4</option>
                 </select>
                 @error('jenjang')
                     <span class="text-danger">{{ $message }}<br></span>

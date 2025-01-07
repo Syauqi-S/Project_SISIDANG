@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Jurusan;
 use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
 use Request;
@@ -14,16 +15,26 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
+        $kategoris = Kategori::with('jurusan')->get();
         return view("admin.kategori.index")->with("kategoris",$kategoris);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
     {
-        return view("admin.kategori.create");
+        $jurusans = Jurusan::all();
+        return view("admin.kategori.create")->with('jurusans', $jurusans);
+    }
+
+    public function getKategoriJurusan($jurusan_id){
+        $kategoriJurusan = Kategori::where('id_jurusan',$jurusan_id)->get();
+        return response()->json([
+            "success" => true,
+            "msg" => "successfully get data",
+            "data" => $kategoriJurusan
+        ], 200);
     }
 
     /**
@@ -31,8 +42,14 @@ class KategoriController extends Controller
      */
     public function store(StoreKategoriRequest $request)
     {
+        $request->validate([
+            'kategori'=>'required',
+            'jurusan'=>'required'
+        ]);
+
         $kategori = new Kategori();
         $kategori->kategori = $request->kategori;
+        $kategori->id_jurusan = $request->jurusan;
         $kategori->save();
 
         return redirect('/kategori');
@@ -53,8 +70,13 @@ class KategoriController extends Controller
     public function edit($id)
     {
         $kategori = Kategori::find($id);
+        $jurusans = Jurusan::all();
+
         if(!$kategori) return redirect('/kategori')->with('errors',"Kategori tidak ditemukan");
-        return view('admin.kategori.edit')->with("kategori", $kategori);
+        return view('admin.kategori.edit')->with([
+            "kategori"=> $kategori,
+            "jurusans"=> $jurusans
+        ]);
     }
 
     /**
@@ -64,6 +86,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->kategori = $request->kategori;
+        $kategori->id_jurusan = $request->jurusan;
         $kategori->update();
 
         return redirect('/kategori');

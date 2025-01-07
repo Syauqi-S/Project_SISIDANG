@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Prodi;
 use App\Models\Jurusan;
-use App\Models\Jenjang;
 use App\Http\Requests\StoreProdiRequest;
 use App\Http\Requests\UpdateProdiRequest;
 
@@ -16,7 +15,7 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        $prodis = Prodi::with(['jurusan','jenjang'])->get();
+        $prodis = Prodi::with(['jurusan'])->get();
         return view("admin.prodi.index")->with('prodis', $prodis);
     }
 
@@ -26,9 +25,9 @@ class ProdiController extends Controller
     public function create()
     {
         $jurusans = Jurusan::all();
-        $jenjangs = Jenjang::all();
-        return view("admin.prodi.create")->with('jurusans',$jurusans)->with('jenjangs',$jenjangs);
+        return view("admin.prodi.create")->with('jurusans',$jurusans);
     }
+
 
     // Function untuk mengambil data prodi berdasarkan id jurusan dalam bentuk json
     public function  getProdiJurusan($jurusan_id){
@@ -55,7 +54,7 @@ class ProdiController extends Controller
         $prodi = new Prodi();
         $prodi->nama_prodi = $request->prodi;
         $prodi->id_jurusan = $request->jurusan;
-        $prodi->id_jenjang = $request->jenjang;
+        $prodi->jenjang = $request->jenjang;
         $prodi->save();
 
         return redirect('/prodi');
@@ -76,14 +75,12 @@ class ProdiController extends Controller
     {
         $prodi = Prodi::find($id);
         $jurusans = Jurusan::all();
-        $jenjangs = Jenjang::all();
         
         // validasi jika user id tidak di temukan ketika ingin mengedit
         if (!$prodi) return redirect('/prodi')->with('errors', "Prodi tidak ditemukan");
         return view('admin.prodi.edit')->with([
             'prodi'=> $prodi,
-            'jurusans' => $jurusans,
-            'jenjangs' => $jenjangs
+            'jurusans' => $jurusans
         ]);
     }
 
@@ -102,7 +99,7 @@ class ProdiController extends Controller
         $prodi = Prodi::find($id);
         $prodi->nama_prodi = $request->prodi;
         $prodi->id_jurusan = $request->jurusan;
-        $prodi->id_jenjang = $request->jenjang;
+        $prodi->jenjang = $request->jenjang;
         $prodi->update();
 
         return redirect('/prodi');

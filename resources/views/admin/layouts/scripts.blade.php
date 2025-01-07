@@ -3,6 +3,9 @@
 <script src="/kaiadmin-lite-1.2.0/assets/js/core/popper.min.js"></script>
 <script src="/kaiadmin-lite-1.2.0/assets/js/core/bootstrap.min.js"></script>
 
+{{-- multi select --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- jQuery Scrollbar -->
 <script src="/kaiadmin-lite-1.2.0/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 

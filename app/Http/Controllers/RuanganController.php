@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ruangan;
 use App\Http\Requests\StoreRuanganRequest;
 use App\Http\Requests\UpdateRuanganRequest;
+use Request;
 
 class RuanganController extends Controller
 {
@@ -13,15 +14,16 @@ class RuanganController extends Controller
      */
     public function index()
     {
-        //
+        $ruangans = Ruangan::all();
+        return view("admin.ruangan.index")->with("ruangans", $ruangans);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view("admin.ruangan.create");
     }
 
     /**
@@ -29,7 +31,11 @@ class RuanganController extends Controller
      */
     public function store(StoreRuanganRequest $request)
     {
-        //
+        $ruangan = New Ruangan();
+        $ruangan->ruangan = $request->ruangan;
+        $ruangan->save();
+
+        return redirect('/ruangan');
     }
 
     /**
@@ -43,24 +49,35 @@ class RuanganController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ruangan $ruangan)
+    public function edit($id)
     {
-        //
+        $ruangan = Ruangan::find($id);
+        if(!$ruangan) return redirect('/ruangan')-with('errors',"Ruangan tidak ditemukan");
+        return view("admin.ruangan.edit")->with("ruangan", $ruangan);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRuanganRequest $request, Ruangan $ruangan)
+    public function update(UpdateRuanganRequest $request, $id)
     {
-        //
+        $ruangan = Ruangan::find($id);
+        $ruangan->ruangan = $request->ruangan;
+        $ruangan->update();
+
+        return redirect('/ruangan');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ruangan $ruangan)
+    public function destroy($id)
     {
-        //
+        $ruangan = Ruangan::find($id);
+        if(!$ruangan) return redirect('/ruangan')->with('error',"Ruangan tidak ditemukan");
+        $ruangan->delete();
+
+        return redirect('/ruangan');
     }
 }

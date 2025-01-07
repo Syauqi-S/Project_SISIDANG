@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mhs_ta extends Model
+class Bimbingan extends Model
 {
     use HasFactory;
 }

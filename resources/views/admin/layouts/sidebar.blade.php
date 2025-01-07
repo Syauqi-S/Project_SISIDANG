@@ -53,12 +53,6 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a href="/jenjang">
-                              <i class="fas fa-users"></i>
-                              <p>Jenjang</p>
-                          </a>
-                      </li>
-                      <li class="nav-item">
                           <a href="/prodi">
                               <i class="fas fa-users"></i>
                               <p>Prodi</p>
@@ -82,6 +76,18 @@
                               <p>Kategori</p>
                           </a>
                       </li>
+                      <li class="nav-item">
+                          <a href="/ruangan">
+                              <i class="fas fa-users"></i>
+                              <p>Ruangan</p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="/jabatan">
+                              <i class="fas fa-users"></i>
+                              <p>Jabatan</p>
+                          </a>
+                      </li>
                       <li class="nav-item ">
                           <a data-bs-toggle="collapse" href="#chartsTA">
                               <i class="far fa-id-card"></i>
@@ -91,13 +97,13 @@
                           <div class="collapse" id="chartsTA">
                               <ul class="nav nav-collapse">
                                   <li>
-                                      <a href="/users">
+                                      <a href="/pengajuan">
                                           <i class="fas fa-users"></i>
                                           <p>Judul TA <span class="text-info">(Kaprodi)</span></p>
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="/roles">
+                                      <a href="/pengajuan">
                                           <i class="fas fa-users"></i>
                                           <p>Ajukan Judul <span class="text-info">(Mhs)</span></p>
                                       </a>

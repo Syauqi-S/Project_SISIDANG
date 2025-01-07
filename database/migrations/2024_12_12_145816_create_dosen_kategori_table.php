@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('dosen_kategori', function (Blueprint $table) {
             $table->id();
-            $table->string('nidn',20)->unique();
-            $table->string('nip',25)->unique();
-            $table->string('nama',50);
-            $table->unsignedBigInteger('id_jurusan');
+            $table->unsignedBigInteger('id_dosen');
+            $table->unsignedBigInteger('id_kategori');
             $table->timestamps();
 
-            $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade');
+            $table->foreign('id_dosen')->references('id')->on('dosen')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('dosen_kategori');
     }
 };

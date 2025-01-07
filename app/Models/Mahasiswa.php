@@ -16,4 +16,8 @@ class Mahasiswa extends Model
     public function prodi(){
         return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
+
+    // public function pengajuan(){
+    //     return $this->hasMany(Pengajuan::class,'id_mhs','id');
+    // }
 }

@@ -10,7 +10,16 @@ class Kategori extends Model
     use HasFactory;
 
     protected $fillable = [
-        'kategori'
+        'kategori',
+        'id_jurusan'
     ];
+
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class,'id_jurusan','id');
+    }
+
+    public function dosen(){
+        return $this->belongsToMany(Dosen::class,'dosen_kategori','id_kategori','id_dosen');
+    }
 
 }

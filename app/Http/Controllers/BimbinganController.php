@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mhs_ta;
-use App\Http\Requests\StoreMhs_taRequest;
-use App\Http\Requests\UpdateMhs_taRequest;
+use App\Models\Bimbingan;
+use App\Http\Requests\StoreBimbinganRequest;
+use App\Http\Requests\UpdateBimbinganRequest;
 
-class MhsTaController extends Controller
+class BimbinganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class MhsTaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMhs_taRequest $request)
+    public function store(StoreBimbinganRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class MhsTaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Mhs_ta $mhs_ta)
+    public function show(Bimbingan $bimbingan)
     {
         //
     }
@@ -43,7 +43,7 @@ class MhsTaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Mhs_ta $mhs_ta)
+    public function edit(Bimbingan $bimbingan)
     {
         //
     }
@@ -51,7 +51,7 @@ class MhsTaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMhs_taRequest $request, Mhs_ta $mhs_ta)
+    public function update(UpdateBimbinganRequest $request, Bimbingan $bimbingan)
     {
         //
     }
@@ -59,7 +59,7 @@ class MhsTaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Mhs_ta $mhs_ta)
+    public function destroy(Bimbingan $bimbingan)
     {
         //
     }

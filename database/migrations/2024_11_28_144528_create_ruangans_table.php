@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('ruangan', function (Blueprint $table) {
             $table->id();
-            $table->string("ruangan");
+            $table->string('ruangan');
+            //0 tidak tersedia, 1 tersedia
+            $table->enum('sesi_1',['0', '1'])->default('0');
+            $table->enum('sesi_2',['0', '1'])->default('0');
+            $table->enum('sesi_3',['0', '1'])->default('0');
             $table->timestamps();
         });
     }

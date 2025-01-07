@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nama_prodi');
             $table->unsignedBigInteger('id_jurusan');
             $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade');
-            $table->unsignedBigInteger('id_jenjang');
-            $table->foreign('id_jenjang')->references('id')->on('jenjang')->onDelete('cascade');
+            $table->string('jenjang');
             $table->timestamps();
         });
     }

@@ -18,4 +18,8 @@ class Dosen extends Model
     public function prodi(){
         return $this->belongsTo(Prodi::class,'id_prodi','id');
     }
+
+    public function kategori(){
+        return $this->belongsToMany( Kategori::class, 'dosen_kategori',foreignPivotKey: 'id_dosen',relatedPivotKey: 'id_kategori');
+    }
 }

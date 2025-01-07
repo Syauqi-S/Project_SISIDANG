@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h4>Data Kategori</h4>
-    {{-- open btn tambah kategori --}}
+    <h4>Data Jabatan</h4>
+    {{-- open btn tambah jabatan --}}
     <div class="d-flex">
         <div class="ms-auto">
-            <a href="{{ route('kategori.create') }}" class="btn btn-success mb-4"><i class="fas fa-plus"></i> Add Kategori</a>
+            <a href="{{ route('jabatan.create') }}" class="btn btn-success mb-4"><i class="fas fa-plus"></i> Add Jabatan</a>
         </div>
     </div>
-    {{-- menampilkan error jika kategori id tidak ditemukan --}}
+    {{-- menampilkan error jika jabatan id tidak ditemukan --}}
     @if (session('errors'))
         <div class="alert alert-danger text-danger">
             {{ session('errors') }}
@@ -20,27 +20,25 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Kategori</th>
-                    <th>Jurusan</th>
+                    <th>Jabatan</th>
                     <th style="width: 200px">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($kategoris->isEmpty())
+                @if ($jabatans->isEmpty())
                     <tr>
-                        <td colspan="4" class="text-center">Tidak ada data yang ditemukan</td>
+                        <td colspan="3" class="text-center">Tidak ada data yang ditemukan</td>
                     </tr>
                 @else
-                    @foreach ($kategoris as $item)
+                    @foreach ($jabatans as $item)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $item->kategori }}</td>
-                            <td>{{ $item->jurusan->Jurusan }}</td>
+                            <td>{{ $item->jabatan }}</td>
                             <td>
-                                <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-sm btn-primary"
+                                <a href="{{ route('jabatan.edit', $item->id) }}" class="btn btn-sm btn-primary"
                                     class="me-5"><i class="fas fa-edit">
                                         Edit</i></a>
-                                <form action="{{ route('kategori.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('jabatan.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger ms-3">

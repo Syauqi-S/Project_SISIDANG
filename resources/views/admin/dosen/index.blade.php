@@ -26,7 +26,7 @@
                     <th>NIP</th>
                     <th>Nama</th>
                     <th>Jurusan</th>
-                    <th>Prodi</th>
+                    <th>Keahlian</th>
                     <th style="width: 200px">Action</th>
                 </tr>
             </thead>
@@ -43,7 +43,14 @@
                             <td>{{ $item->nip }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->jurusan->Jurusan }}</td>
-                            <td>{{ $item->prodi->nama_prodi }}</td>
+                            <td>
+                                {{-- {{ $item->kategori->pluck('kategori')->implode(', ') }} --}}
+                                @foreach ($item->kategori as $kategori)
+                                    <span
+                                        class="badge border border-primary text-primary ">{{ $kategori->kategori }}{{ !$loop->last ? ' ' : '' }}
+                                    </span>
+                                @endforeach
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <!-- Button trigger modal -->
@@ -73,8 +80,9 @@
                                                         <div class="col-8">: {{ $item->nama }}</div>
                                                         <div class="col-4"><strong>Jurusan</strong></div>
                                                         <div class="col-8">: {{ $item->jurusan->Jurusan }}</div>
-                                                        <div class="col-4"><strong>Prodi</strong></div>
-                                                        <div class="col-8">: {{ $item->prodi->nama_prodi }}</div>
+                                                        <div class="col-4"><strong>Keahlian</strong></div>
+                                                        <div class="col-8">:
+                                                            {{ $item->kategori->pluck('kategori')->implode(', ') }}</div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

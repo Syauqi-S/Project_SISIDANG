@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\DosenController;
-use App\Http\Controllers\JenjangController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MahasiswaController;
@@ -30,14 +32,22 @@ Route::resource("roles", RolesController::class);
 
 Route::resource("jurusan", JurusanController::class);
 
-Route::resource("jenjang", JenjangController::class);
-
 Route::resource("prodi", ProdiController::class);
 
 Route::resource("mahasiswa", MahasiswaController::class);
 
-Route::get('get-prodi-jurusan/{jurusan_id}', [ProdiController::class, 'getProdiJurusan']);
-
 Route::resource("dosen", DosenController::class);
 
 Route::resource("kategori", KategoriController::class);
+
+Route::resource("ruangan", RuanganController::class);
+
+Route::resource('jabatan', JabatanController::class);
+
+Route::resource('pengajuan', PengajuanController::class);
+
+Route::get('get-prodi-jurusan/{jurusan_id}', [ProdiController::class, 'getProdiJurusan']);
+
+Route::get('get-kategori-jurusan/{jurusan_id}', [KategoriController::class, 'getKategoriJurusan']);
+
+Route::get('get-dosen-kategori/{kategori_id}', [DosenController::class, 'getDosenKategori']);

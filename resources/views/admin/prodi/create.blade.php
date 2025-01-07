@@ -29,10 +29,12 @@
                 <label>Jenjang</label>
                 <select name="jenjang" id="jenjang" class="form-control">
                     <option value="">Pilih Jenjang</option>
-                    @foreach ($jenjangs as $jenjang)
-                        <option value="{{ $jenjang->id }}" {{ old('jenjang') == $jenjang->id ? 'selected' : '' }}>
-                            {{ $jenjang->nama_jenjang }}</option>
-                    @endforeach
+                    <option {{ old('jenjang') === 'D2' ? 'selected' : '' }} value="D2">
+                        D2</option>
+                    <option {{ old('jenjang') === 'D3' ? 'selected' : '' }} value="D3">
+                        D3</option>
+                    <option {{ old('jenjang') === 'D4' ? 'selected' : '' }} value="D4">
+                        D4</option>
                 </select>
                 @error('jenjang')
                     <span class="text-danger">{{ $message }}<br></span>

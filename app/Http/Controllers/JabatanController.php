@@ -13,7 +13,8 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        //
+        $jabatans = Jabatan::all();
+        return view("admin.jabatan.index")->with("jabatans",$jabatans);
     }
 
     /**
@@ -21,7 +22,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.jabatan.create");
     }
 
     /**
@@ -29,7 +30,11 @@ class JabatanController extends Controller
      */
     public function store(StoreJabatanRequest $request)
     {
-        //
+        $jabatan = New Jabatan();
+        $jabatan->jabatan = $request->jabatan;
+        $jabatan->save();
+
+        return redirect('/jabatan');
     }
 
     /**
@@ -43,24 +48,34 @@ class JabatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Jabatan $jabatan)
+    public function edit($id)
     {
-        //
+        $jabatan = Jabatan::find($id);
+        if(!$jabatan) return redirect('/jabatan')->with('errors',"Jabatan tidak ditemukan");
+        return view("admin.jabatan.edit")->with("jabatan",$jabatan);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJabatanRequest $request, Jabatan $jabatan)
+    public function update(UpdateJabatanRequest $request, $id)
     {
-        //
+        $jabatan = Jabatan::find($id);
+        $jabatan->jabatan = $request->jabatan;
+        $jabatan->update();
+
+        return redirect('/jabatan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jabatan $jabatan)
+    public function destroy($id)
     {
-        //
+        $jabatan = Jabatan::find($id);
+        if(!$jabatan) return redirect('/jabatan')->with('errors',"Jabatan tidak ditemukan");
+        $jabatan->delete();
+
+        return redirect('/jabatan');
     }
 }

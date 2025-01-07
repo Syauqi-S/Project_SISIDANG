@@ -8,14 +8,16 @@
             @method('PUT')
             <div class="mb-3">
                 <label>NIDN</label>
-                <input type="text" name="nidn" value="{{ old('nidn', $dosen->nidn) }}" class="form-control" readonly>
+                <input type="text" readonly class="form-control-plaintext" name="nidn"
+                    value="{{ old('nidn', $dosen->nidn) }}">
                 @error('nidn')
                     <span class="text-danger">{{ $message }}<br></span>
                 @enderror
             </div>
             <div class="mb-3">
                 <label>NIP</label>
-                <input type="text" name="nip" value="{{ old('nip', $dosen->nip) }}" class="form-control" readonly>
+                <input type="text" readonly class="form-control-plaintext" name="nip"
+                    value="{{ old('nip', $dosen->nip) }}">
                 @error('nip')
                     <span class="text-danger">{{ $message }}<br></span>
                 @enderror
@@ -42,16 +44,22 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label>Prodi</label>
-                <select name="prodi" id="prodi" class="form-control">
-                    <option value="">Pilih Prodi</option>
-                    @foreach ($prodi as $item)
-                        <option {{ $item->id == $dosen->id_prodi ? 'selected' : '' }} value="{{ $item->id }}">
-                            {{ old('prodi') == $item->id ? 'selected' : '' }}
-                            {{ $item->nama_prodi }}</option>
+                <label for="kategori">Kategori(Keahlian)</label>
+                <select name="kategori[]" id="kategori" class="form-control" multiple>
+                    @php
+                        $selectedKategori = old('kategori', $dosen->kategori->pluck('id')->toArray() ?? []);
+                        if (!is_array($selectedKategori)) {
+                            $selectedKategori = [];
+                        }
+                    @endphp
+                    @foreach ($kategoris as $item)
+                        <option value="{{ $item->id }}"
+                            {{ in_array($item->id, $selectedKategori) ? 'selected' : '' }}>
+                            {{ $item->kategori }}
+                        </option>
                     @endforeach
                 </select>
-                @error('prodi')
+                @error('kategori')
                     <span class="text-danger">{{ $message }}<br></span>
                 @enderror
             </div>
@@ -61,5 +69,13 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
-    <script src="/jurusanProdi.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#kategori').select2({
+                placeholder: 'Pilih kategori keahlian',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
 @endsection

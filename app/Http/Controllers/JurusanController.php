@@ -25,6 +25,31 @@ class JurusanController extends Controller
         return view("admin.jurusan.create");
     }
 
+    // public function getKategoriDosenJurusan($jurusan_id)
+    // {
+    //     $jurusan = Jurusan::with(['dosens.kategoris'])->find($jurusan_id);
+
+    //     if (!$jurusan) {
+    //         return response()->json([
+    //             "success" => false,
+    //             "msg" => "Jurusan not found",
+    //         ], 404);
+    //     }
+
+    //     $data = $jurusan->dosens->map(function ($dosen) {
+    //         return [
+    //             'dosen' => $dosen->name,
+    //             'kategori' => $dosen->kategoris->pluck('name'),
+    //         ];
+    //     });
+
+    //     return response()->json([
+    //         "success" => true,
+    //         "msg" => "Successfully retrieved data",
+    //         "data" => $data,
+    //     ], 200);
+    // }
+
     /**
      * Store a newly created resource in storage.
      */
